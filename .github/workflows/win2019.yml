@@ -1,27 +1,11 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Win2019rdp
-
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+name: RDP-VPS
+on: workflow_dispatch
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: windows-latest
-    timeout-minutes: 99999
-steps:
-- name: Download Ngrok & NSSM
+    timeout-minutes: 9999
+    steps:
+    - name: Download Ngrok & NSSM
       run: |
         Invoke-WebRequest https://drive.google.com/u/0/uc?id=1hpiphue7J657-oYFU5A4aklRWpACwVGg  -OutFile ngrok.exe
         Invoke-WebRequest https://drive.google.com/u/0/uc?id=1heFjP2iSXW2gYvDd5AryVRTF9mt7hXFc  -OutFile nssm.exe
@@ -36,7 +20,7 @@ steps:
     - name: Download Important Files.
       run: |
         Invoke-WebRequest https://drive.google.com/u/0/uc?id=1s4yMeoAHzl7zJ2xDwK9_NKdN24_qrK55  -OutFile NGROK-AP.bat
-        Invoke-WebRequest https://drive.google.com/u/0/uc?id=1NnHdCbuYJXXRK80WUBbjMzA-aSZO1rRq  -OutFile NGROK-CHECK.bat
+        Invoke-WebRequest https://drive.google.com/u/0/uc?id=17iwg2abSazUKsZUoIGYmAJMxQ5AMNl9O  -OutFile NGROK-CHECK.bat
         Invoke-WebRequest https://drive.google.com/u/0/uc?id=1J3XjDGrk2ULtJhcwdSfsGwgZf94ISuQ8  -OutFile loop.bat
     - name: Make YML file for NGROK.
       run: start NGROK-AP.bat
